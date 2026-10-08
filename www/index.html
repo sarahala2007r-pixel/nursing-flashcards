@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nursing LLM Test</title>
+<style>
+  :root { --bg:#f6f7f9; --fg:#1b1f24; --card:#fff; --accent:#0a7d6e; --muted:#6b7280; --border:#d9dde3; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#14171a; --fg:#e8eaed; --card:#1d2125; --accent:#2bb8a3; --muted:#9aa0a6; --border:#343a40; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:16px; padding-top:calc(16px + env(safe-area-inset-top, 0px));
+         padding-bottom:calc(16px + env(safe-area-inset-bottom, 0px));
+         background:var(--bg); color:var(--fg); font-family:system-ui, sans-serif; font-size:16px; }
+  h1 { font-size:18px; margin:0 0 12px; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px; margin-bottom:12px; }
+  .label { font-size:13px; color:var(--muted); margin-bottom:6px; }
+  button { width:100%; padding:14px; font-size:16px; border:0; border-radius:10px;
+           background:var(--accent); color:#fff; font-weight:600; }
+  button:disabled { opacity:.45; }
+  pre { margin:0; white-space:pre-wrap; word-break:break-word; direction:ltr; text-align:left; font-size:12.5px; }
+  #output { min-height:48px; direction:ltr; text-align:left; font-size:15px; white-space:pre-wrap; }
+  #log { max-height:240px; overflow:auto; }
+  small { color:var(--muted); }
+</style>
+</head>
+<body>
+  <h1>اختبار Capacitor + llama.cpp (CPU فقط)</h1>
+
+  <div class="card">
+    <button id="btnPick">اختيار ملف النموذج (GGUF)</button>
+    <div class="label" style="margin-top:10px">حالة النسخ / التحميل</div>
+    <div id="copyStatus">...</div>
+  </div>
+
+  <div class="card">
+    <button id="btnGen" disabled>توليد جملة قصيرة</button>
+    <small>الطلب الثابت: In one short sentence, what is hypertension?</small>
+    <div class="label" style="margin-top:10px">الناتج</div>
+    <div id="output"></div>
+    <div class="label" style="margin-top:10px">السرعة</div>
+    <div id="speed" dir="ltr" style="text-align:left">-</div>
+  </div>
+
+  <div class="card">
+    <div class="label">سجل آخر خطوة (محفوظ على القرص)</div>
+    <pre id="log"></pre>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
